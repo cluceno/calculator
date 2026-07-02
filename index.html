@@ -4,31 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
      <div class="calculator">
-        <div class="display">0</div>
-        <div class="buttons">
-            <button class="btn operator" id="delete">&#9003;</button>
-            <button class="btn operator" id="clear">C</button>
-            <button class="btn operator" id="percent">%</button>
-            <button class="btn operator" id="divde">&divide;</button>
-            <button class="btn number" id="seven">7</button>
-            <button class="btn number" id="eight">8</button>
-            <button class="btn number" id="nine">9</button>
-            <button class="btn operator" id="multiply">x</button>
-            <button class="btn number" id="four">4</button>
-            <button class="btn number" id="five">5</button>
-            <button class="btn number" id="six">6</button>
-            <button class="btn operator" id="subtract">-</button>
-            <button class="btn number" id="one">1</button>
-            <button class="btn number" id="two">2</button>
-            <button class="btn number" id="three">3</button>
-            <button class="btn operator" id="addition">+</button>
-            <button class="btn number" id="plusminus">+/-</button>
-            <button class="btn number" id="zero">0</button>
-            <button class="btn number" id="decimal">.</button>
-            <button class="btn operator" id="equals">=</button>
+        <div class="display">
+            <div class="displayHistory"></div>
+            <div class="current">0</div>
+        </div>
+        <div class="buttonsContainer">
+            <button class="btn upper" id="del">&#9003;</button>
+            <button class="btn upper" id="clear">C</button>
+            <button class="btn upper" id="percent">%</button>
+            <button class="btn operator rightSide" id="divide">&divide;</button>
+            <button class="btn number">7</button>
+            <button class="btn number">8</button>
+            <button class="btn number">9</button>
+            <button class="btn operator rightSide" id="multiply">×</button>
+            <button class="btn number">4</button>
+            <button class="btn number">5</button>
+            <button class="btn number">6</button>
+            <button class="btn operator rightSide" id="subtract">-</button>
+            <button class="btn number">1</button>
+            <button class="btn number">2</button>
+            <button class="btn number">3</button>
+            <button class="btn operator rightSide" id="addition">+</button>
+            <button class="btn" id="plusminus">+/-</button>
+            <button class="btn number">0</button>
+            <button class="btn" id="decimal">.</button>
+            <button class="btn rightSide" id="equals">=</button>
         </div>
      </div>
 </body>
