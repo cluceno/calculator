@@ -102,10 +102,12 @@ equals.addEventListener("click", () => {
     if (!(/\d+[+\-×÷]-?\d+/.test(currentDisplay.textContent))) return;
     displayHistory.textContent = currentDisplay.textContent;
 
-    const parts = currentDisplay.textContent.split(/([+\-×÷])/);
-    const firstNumber = parseFloat(parts[0]);
-    const operator = parts[1];
-    const secondNumber = parseFloat(parts.slice(2).join(""));
+    const match = currentDisplay.textContent.match(/^(-?\d+\.?\d*)([+\-×÷])(-?\d+\.?\d*)$/);
+    if (!match) return;
+
+    const firstNumber = parseFloat(match[1]);
+    const operator = match[2];
+    const secondNumber = parseFloat(match[3]);
 
     let result = operate(firstNumber, secondNumber, operator);
     currentDisplay.textContent = result;
