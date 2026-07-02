@@ -9,6 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background-color: darkgrey;
 }
 
 .calculator {
@@ -16,13 +17,16 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: darkgrey;
+    background-color: #1C1C1E;
     padding: 16px;
     border-radius: 5%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
 }
 
 .display {
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 2.2rem;
     text-align: right;
     width: 100%;
     padding-right: 16px;
@@ -33,18 +37,19 @@ body {
 .current {
     width: 100%;
     color: white;
-    height: 20px;
+    height: 40px;
 }
 
 .displayHistory {
     width: 100%;
     color: lightgrey;
-    height: 20px;
+    height: 40px;
 }
 
 .buttonsContainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
 }
 
 /* Base styles - mobile */
@@ -52,9 +57,10 @@ button {
     border: none;
     border-radius: 50%;
     color: white;
-    width: 70px; 
-    height: 70px;
-    font-size: 1.0rem;
+    width: 50px; 
+    height: 50px;
+    font-size: 1rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Desktop */
@@ -62,7 +68,8 @@ button {
   button {
     width: 70px;
     height: 70px;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
   }
 }
 
