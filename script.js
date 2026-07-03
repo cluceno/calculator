@@ -1,30 +1,29 @@
-/*
 
-Buttons will click numbers and show up on the display. 
-
-When an operator is pushed the number should be stored in a variable and the operator will also be stored.
-    - If a number is not pushed the stored number defaults to zero
-
-After the first number and operator are stored then we move on to the second number
-
-When we press equals the second number is stored and the final value is returned. 
-
-*/
-
+// DOM variables 
 
 const currentDisplay = document.querySelector(".current");
 const displayHistory = document.querySelector(".displayHistory");
 const operatorButtons = document.querySelectorAll(".operator");
+const buttonsContainer = document.querySelector(".buttonsContainer");
+const del = document.querySelector("#del");
+const clear = document.querySelector("#clear");
+const plusminus = document.querySelector("#plusminus");
+const decimal = document.querySelector("#decimal");
+const equals = document.querySelector("#equals"); 
 
+let hasError = false;
 
 // Display
 
 
 // Number buttons
-const buttonsContainer = document.querySelector(".buttonsContainer");
 buttonsContainer.addEventListener("click", (e) => {
+    if (hasError && e.target.id !== "clear" && e.target.id !== "del") return;
+
     if (e.target.classList.contains("number")) {
-        clear.textContent = "C"; // reset button when user starts typing
+        if (clear.textContent === "AC") {
+            clear.textContent = "C";
+        }
         if (currentDisplay.textContent === "0") {
             currentDisplay.textContent = e.target.textContent;
         } else {
@@ -35,6 +34,8 @@ buttonsContainer.addEventListener("click", (e) => {
 
 // Operators
 buttonsContainer.addEventListener("click", (e) => {
+    if (hasError && e.target.id !== "clear" && e.target.id !== "del") return;
+
     if (e.target.classList.contains("operator")) {
         if ((/\d[+\-×÷]/.test(currentDisplay.textContent))) return;
         currentDisplay.textContent += e.target.textContent;
@@ -43,28 +44,33 @@ buttonsContainer.addEventListener("click", (e) => {
 
 // Delete and Clear
 
-const del = document.querySelector("#del");
-del.addEventListener("click", () => {
-    currentDisplay.textContent = currentDisplay.textContent.slice(0, -1);
-    if (currentDisplay.textContent ==="") {
-        currentDisplay.textContent = "0";
-    }
-})
+del.addEventListener("click", () => {  
+    if (currentDisplay.textContent === "Error") {
+        currentDisplay.textContent = "0"
+        hasError = false;
+    } else {
+        currentDisplay.textContent = currentDisplay.textContent.slice(0, -1);
+        if (currentDisplay.textContent ==="") {
+            currentDisplay.textContent = "0";
+        }
+    }})
 
-const clear = document.querySelector("#clear");
 clear.addEventListener("click", () => {
+    hasError = false;
     currentDisplay.textContent = "0";
+    
     if (clear.textContent === "AC") {
         displayHistory.textContent = "";
         clear.textContent = "C";
-    } else {
+    } else if (displayHistory.textContent !== "") {
         clear.textContent = "AC";
     }
 })
 
 //plusminus
-const plusminus = document.querySelector("#plusminus");
 plusminus.addEventListener("click", () => {
+    if (hasError && e.target.id !== "clear" && e.target.id !== "del") return;
+
     if (/\d.*[+×÷]/.test(currentDisplay.textContent) || /[+\-×÷]-/.test(currentDisplay.textContent)) {
         // operator is present, toggle second number
         const parts = currentDisplay.textContent.split(/([+×÷-](?!.*[+×÷]))/);
@@ -90,14 +96,14 @@ plusminus.addEventListener("click", () => {
 })
 
 // Decimal 
-const decimal = document.querySelector("#decimal");
 decimal.addEventListener("click", () => {
+    if (hasError && e.target.id !== "clear" && e.target.id !== "del") return;
+
     if (currentDisplay.textContent.endsWith(".")) return;
     currentDisplay.textContent += ".";
 })
 
 // Equals 
-const equals = document.querySelector("#equals"); 
 equals.addEventListener("click", () => {
     if (!(/\d+[+\-×÷]-?\d+/.test(currentDisplay.textContent))) return;
     displayHistory.textContent = currentDisplay.textContent;
@@ -110,6 +116,11 @@ equals.addEventListener("click", () => {
     const secondNumber = parseFloat(match[3]);
 
     let result = operate(firstNumber, secondNumber, operator);
+
+    if (result === "Error") {
+        hasError = true;
+        }
+    
     currentDisplay.textContent = result;
 })
 
