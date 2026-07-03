@@ -116,6 +116,8 @@ equals.addEventListener("click", () => {
 //Calculate functions 
 
 const operate = function(firstNumber, secondNumber, operator) {
+    if (operator === "÷" && secondNumber == 0) return "Error";
+    
     if (operator === "+") {
         return firstNumber + secondNumber;
     } else if (operator === "-") {
