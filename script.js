@@ -141,3 +141,27 @@ const operate = function(firstNumber, secondNumber, operator) {
 }
 
 
+// Keyboard support 
+
+document.addEventListener("keydown", (e) => {
+    if (e.key >= "0" && e.key <= "9") {
+        document.querySelector(`[data-key="${e.key}"]`).click();
+    }
+
+    const keyMap = {
+        "+": "#addition",
+        "-": "#subtract",
+        "*": "#multiply",
+        "/": "#divide",
+        "Enter": "#equals",
+        "=": "#equals"
+        "Backspace": "#del",
+        "Escape": "#clear",
+        "%": "#percent",
+        ".": "#decimal",
+    };
+
+    if (keyMap[e.key]) {
+        document.querySelector(keyMap[e.key]).click();
+    }
+})
