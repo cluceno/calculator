@@ -68,7 +68,7 @@ clear.addEventListener("click", () => {
 })
 
 //plusminus
-plusminus.addEventListener("click", () => {
+plusminus.addEventListener("click", (e) => {
     if (hasError && e.target.id !== "clear" && e.target.id !== "del") return;
 
     if (/\d.*[+×÷]/.test(currentDisplay.textContent) || /[+\-×÷]-/.test(currentDisplay.textContent)) {
@@ -96,7 +96,7 @@ plusminus.addEventListener("click", () => {
 })
 
 // Decimal 
-decimal.addEventListener("click", () => {
+decimal.addEventListener("click", (e) => {
     if (hasError && e.target.id !== "clear" && e.target.id !== "del") return;
 
     if (currentDisplay.textContent.endsWith(".")) return;
@@ -154,7 +154,7 @@ document.addEventListener("keydown", (e) => {
         "*": "#multiply",
         "/": "#divide",
         "Enter": "#equals",
-        "=": "#equals"
+        "=": "#equals",
         "Backspace": "#del",
         "Escape": "#clear",
         "%": "#percent",
